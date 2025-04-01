@@ -25,25 +25,17 @@ module parameterized_systolic_array #(
     generate
         for (i = 0; i < N; i = i + 1) begin: row_gen
             for (j = 0; j < N; j = j + 1) begin: col_gen
-                // assign input_in:
-                // - for the leftmost column (j=0), we take x_in[i] from top-level input
-                // - otherwise, we take input_out[i][j-1] from the PE to our left
                 assign input_in[i][j] = (j == 0)
-                    ? x_in[i*DATA_WIDTH +: DATA_WIDTH] // way of indexing a bus --> x_in[i*DATA_WIDTH + DATA_WIDTH - 1 : previous DATA_WIDTH] ------ ex. if i = 0, index=[7:0]. if i = 1, index=[15:8], if i = 2, index=[23:16], etc.
-                    : input_out[i][j-1]; // gets the input from previous row, same column
+                    ? x_in[i*DATA_WIDTH +: DATA_WIDTH]
+                    : input_out[i][j-1];
 
-                // assign psum_in:
-                // - For the top row (i=0), partial sums are zero_wire
-                // - Otherwise, we take psum_out[i-1][j] from the PE above
                 assign psum_in[i][j] = (i == 0)
                     ? zero_wire
-                    : psum_out[i-1][j]; / // gets the psum from previous row, same column
+                    : psum_out[i-1][j]; // gets the psum from previous row, same column
 
+                wire [DATA_WIDTH-1:0] w_ij;
+                assign w_ij = w_in[(i*N + j)*DATA_WIDTH +: DATA_WIDTH];
 
-                // xxtract the corresponding weight (i,j) from w_in
-                wire [DATA_WIDTH-1:0] w_ij = w_in[(i*N + j)*DATA_WIDTH +: DATA_WIDTH]; // same method of indexing as x_in
-
-                // instantiate the PE
                 weight_stationary_pe #(
                     .DATA_WIDTH(DATA_WIDTH)
                 ) pe_inst (

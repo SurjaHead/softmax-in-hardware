@@ -1,6 +1,6 @@
   module dump();
   initial begin
-    $dumpfile("divider.vcd");
+    $dumpfile("waveforms/divider.vcd");
     $dumpvars(0, divider); 
   end
   endmodule
