@@ -50,6 +50,13 @@ test_max:
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=tests.test_max vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 	! grep failure results.xml
 
+test_subtract:
+	rm -rf sim_build/
+	mkdir sim_build/
+	iverilog $(IVERILOG_ARGS) -o sim_build/sim.vvp -s subtract -s dump src/subtract.sv tests/dump_subtract.sv
+	PYTHONOPTIMIZE=${NOASSERT} MODULE=tests.test_subtract vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
+	! grep failure results.xml
+
 # Other targets
 clean::
 	rm -rf __pycache__
