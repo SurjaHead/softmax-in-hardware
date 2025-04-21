@@ -1,0 +1,111 @@
+$date
+	Mon Apr 21 10:39:53 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module exp $end
+$var wire 1 ! clk $end
+$var wire 32 " q [31:0] $end
+$var wire 32 # q_signed [31:0] $end
+$var wire 1 $ rst $end
+$var wire 32 % z_signed [31:0] $end
+$var wire 64 & t2 [63:0] $end
+$var wire 32 ' t [31:0] $end
+$var wire 32 ( q_out [31:0] $end
+$var wire 96 ) q_L [95:0] $end
+$var wire 32 * p [31:0] $end
+$var parameter 32 + A $end
+$var parameter 32 , B $end
+$var parameter 32 - C $end
+$var parameter 32 . DW $end
+$var parameter 32 / LN2 $end
+$var parameter 32 0 SCALE $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100000000 0
+b10110001 /
+b100000 .
+b1011000 -
+b101011010 ,
+b1011100 +
+$end
+#0
+$dumpvars
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
+1$
+bz #
+bz "
+1!
+$end
+#5
+0!
+#10
+1!
+#15
+0!
+#20
+1!
+0$
+#25
+0!
+#30
+b100000000 (
+b100000000 )
+b11101001110100100 &
+b101011010 '
+b0 *
+b0 %
+b0 #
+b0 "
+1!
+#35
+0!
+#40
+b10000101 (
+b10000101 )
+b111111010010000 &
+b10110100 '
+b11111111111111111111111101011010 *
+b11111111111111111111111101011010 #
+b11111111111111111111111101011010 "
+1!
+#45
+0!
+#50
+b10000110011000 (
+b100001100110 )
+b10 %
+b101100110101000010000 &
+b10010111100 '
+b1101100010 *
+b1000000000 #
+b1000000000 "
+1!
+#55
+0!
+#60
+b110100 (
+b1101000111100 )
+b11111111111111111111111111111001 %
+b10010000000110100001001 &
+b11111111111111111111011110000011 '
+b11111111111111111111011000101001 *
+b11111111111111111111101100000000 #
+b11111111111111111111101100000000 "
+1!
+#65
+0!
+#70
+1!
+#71

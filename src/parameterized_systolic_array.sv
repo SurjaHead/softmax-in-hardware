@@ -1,5 +1,5 @@
 module parameterized_systolic_array #(
-    parameter DATA_WIDTH = 16,
+    parameter DATA_WIDTH = 32,
     parameter N = 4
 )(
     input  wire                      clk,
