@@ -11,13 +11,13 @@ async def test_restoring_divider(dut):
     
     await Timer(10, units="ns")
     
-    dut.rst_n.value = 0
+    dut.rst.value = 0
     dut.start.value   = 0
     dut.dividend.value = 0
     dut.divisor.value  = 0
     await Timer(10, units="ns")
     
-    dut.rst_n.value = 1
+    dut.rst.value = 1
     await Timer(10, units="ns")
     
     # apply test inputs: divide 11 by 3

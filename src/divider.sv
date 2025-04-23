@@ -4,15 +4,15 @@
 
 
 module divider #(
-  parameter DATA_WIDTH=32
+  parameter DW=32
 )(
   input  logic         clk,
-  input  logic         rst_n,
+  input  logic         rst,
   input  logic         start,        
-  input  logic [DATA_WIDTH-1:0]  dividend,     
-  input  logic [DATA_WIDTH-1:0]  divisor,      
-  output logic [DATA_WIDTH-1:0]  quotient,     
-  output logic [DATA_WIDTH-1:0]  remainder,   
+  input  logic [DW-1:0]  dividend,     
+  input  logic [DW-1:0]  divisor,      
+  output logic [DW-1:0]  quotient,     
+  output logic [DW-1:0]  remainder,   
   output logic         done         
 );
 
@@ -24,14 +24,14 @@ module divider #(
   
   state_t state, next_state;
   
-  logic signed [DATA_WIDTH:0] rem_reg, next_rem; // 17-bit signed remainder
-  logic [DATA_WIDTH:0]        quo_reg, next_quo;
-  logic [$clog2(DATA_WIDTH):0]         count, next_count; // 5-bit counter for DATA_WIDTH iterations
-  logic signed [DATA_WIDTH:0] sub_result;        
+  logic signed [DW:0] rem_reg, next_rem; // 17-bit signed remainder
+  logic [DW:0]        quo_reg, next_quo;
+  logic [$clog2(DW):0]         count, next_count; // 5-bit counter for DW iterations
+  logic signed [DW:0] sub_result;        
   
   // sequential block: update state and registers on each clock
-  always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
+  always_ff @(posedge clk or negedge rst) begin
+    if (!rst) begin
       state   <= IDLE;
       quo_reg <= 0;
       rem_reg <= 0;
@@ -57,13 +57,13 @@ module divider #(
         if (start) begin 
           next_quo   = dividend;
           next_rem   = 0;
-          next_count = DATA_WIDTH;
+          next_count = DW;
           next_state = CALC;
         end
       end
       
       CALC: begin
-        next_rem = {rem_reg[DATA_WIDTH-1:0], quo_reg[DATA_WIDTH-1]};
+        next_rem = {rem_reg[DW-1:0], quo_reg[DW-1]};
         next_quo = quo_reg << 1;
         
         sub_result = next_rem - {1'b0, divisor};
@@ -88,6 +88,6 @@ module divider #(
   
   // continuous assignments for outputs
   assign quotient  = quo_reg;
-  assign remainder = rem_reg[DATA_WIDTH-1:0];
+  assign remainder = rem_reg[DW-1:0];
 
 endmodule

@@ -2,26 +2,26 @@
 `timescale 1ns/1ns
 
 module fifo #(
-    parameter DATA_WIDTH = 32,
-    parameter DEPTH = 32
+    parameter DW = 32,
+    parameter N = 4
 ) (
     input  logic clk,
-    input  logic rst_n,
+    input  logic rst,
     input  logic write_en, //write enable
     input  logic read_en, //read enable
-    input  logic [DATA_WIDTH-1:0] data_in,
-    output logic [DATA_WIDTH-1:0] data_out,
+    input  logic [DW-1:0] data_in,
+    output logic [DW-1:0] data_out,
     output logic full,
     output logic empty
 );
 
-logic [DATA_WIDTH-1:0] fifo_mem [0:DEPTH-1];
+logic [DW-1:0] fifo_mem [0:N-1];
 
-localparam PTR_W = $clog2(DEPTH);
+localparam PTR_W = $clog2(N);
 logic [PTR_W-1:0] write_ptr, read_ptr; // head is write, tail is read
 
-always @(posedge clk or negedge rst_n) begin
-    if (rst_n) begin 
+always @(posedge clk or negedge rst) begin
+    if (rst) begin 
         write_ptr <= 0;
         read_ptr <= 0;
     end
@@ -38,7 +38,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign full = (write_ptr == read_ptr + DEPTH-1);
+assign full = (write_ptr == read_ptr + N-1);
 assign empty = (write_ptr == read_ptr);
 
 endmodule

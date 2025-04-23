@@ -3,7 +3,7 @@
 `timescale 1ns/1ns
 
 module weight_stationary_pe #(
-  parameter DATA_WIDTH=32 // Bit width of weights and activations
+  parameter DW=32 // Bit width of weights and activations
 )
 (
   input wire clk,
@@ -11,15 +11,15 @@ module weight_stationary_pe #(
   input wire load_weight,       // load the weight into the PE if this signal is high
   input wire valid,             // signal to indicate that new data is available
 
-  input wire [DATA_WIDTH-1:0] input_in,       // input from the left adjacent PE or weight memory
-  input wire [DATA_WIDTH-1:0] weight,     // weight stored in the PE
-  input wire [DATA_WIDTH-1:0] psum_in,     // accumulated value from the PE above
+  input wire [DW-1:0] input_in,       // input from the left adjacent PE or weight memory
+  input wire [DW-1:0] weight,     // weight stored in the PE
+  input wire [DW-1:0] psum_in,     // accumulated value from the PE above
 
-  output reg [DATA_WIDTH-1:0] input_out,    // input to the right adjacent PE
-  output reg [DATA_WIDTH-1:0] psum_out   // output value feeding into the PE below
+  output reg [DW-1:0] input_out,    // input to the right adjacent PE
+  output reg [DW-1:0] psum_out   // output value feeding into the PE below
 );
     
-  reg [DATA_WIDTH-1:0] weight_reg; // register used to store the weight when load_weight is high
+  reg [DW-1:0] weight_reg; // register used to store the weight when load_weight is high
 
   always @(posedge clk or posedge reset) begin
     if (reset) begin 

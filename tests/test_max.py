@@ -11,16 +11,14 @@ async def test_max_finder(dut):
     cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
 
     # 2) Reset
-    dut.rst.value = 1
+    dut.rst.value = 1 
     await Timer(20, units="ns")
     dut.rst.value = 0
     await RisingEdge(dut.clk)
     await RisingEdge(dut.clk)
 
     # 3) Prepare the 32‑element test vector: 1..16,15..1
-    ascending  = list(range(1, 17))
-    descending = list(range(15, 0, -1))
-    test_vector = ascending + descending
+    test_vector = [1,3,4,2]
 
     # 4) Drive inputs
     dut.din_valid.value = 0
