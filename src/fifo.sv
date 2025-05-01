@@ -3,42 +3,52 @@
 
 module fifo #(
     parameter DW = 32,
-    parameter N = 4
+    parameter N = 32
 ) (
     input  logic clk,
     input  logic rst,
-    input  logic write_en, //write enable
-    input  logic read_en, //read enable
+    input  logic wr_en, //write enable
+    input  logic rd_en, //read enable
     input  logic [DW-1:0] data_in,
     output logic [DW-1:0] data_out,
     output logic full,
     output logic empty
 );
 
-logic [DW-1:0] fifo_mem [0:N-1];
+logic [DW-1:0] fifo_mem [N];
 
-localparam PTR_W = $clog2(N);
-logic [PTR_W-1:0] write_ptr, read_ptr; // head is write, tail is read
+logic [$clog2(N)-1:0] write_ptr;
+logic [$clog2(N)-1:0] read_ptr;
+logic [$clog2(N):0] counter;  // Note: Increased size to handle N elements (0 to N)
 
-always @(posedge clk or negedge rst) begin
-    if (rst) begin 
-        write_ptr <= 0;
-        read_ptr <= 0;
+always_ff @(posedge clk) begin
+  if (rst) begin
+    write_ptr <= 0;
+    read_ptr  <= 0;
+    counter   <= 0;  // Initialize counter
+  end else begin
+    // Write operation
+    if (wr_en && !full) begin
+      fifo_mem[write_ptr] <= data_in;
+      write_ptr <= write_ptr + 1;
     end
-    else begin
-        if (write_en && !full) begin
-            fifo_mem [write_ptr] <= data_in;
-            write_ptr <= write_ptr + 1;
-        end
-
-        if (read_en && !empty) begin
-            data_out <= fifo_mem [read_ptr];
-            read_ptr <= read_ptr + 1;
-        end
+    // Read operation
+    if (rd_en && !empty) begin
+      data_out <= fifo_mem[read_ptr];
+      read_ptr <= read_ptr + 1;
     end
+    // Update counter
+    if (wr_en && !full && rd_en && !empty) begin
+      counter <= counter;  // No change if both write and read
+    end else if (wr_en && !full) begin
+      counter <= counter + 1;  // Write only
+    end else if (rd_en && !empty) begin
+      counter <= counter - 1;  // Read only
+    end
+  end
 end
 
-assign full = (write_ptr == read_ptr + N-1);
-assign empty = (write_ptr == read_ptr);
+assign empty = (counter == 0);
+assign full  = (counter == N);
 
 endmodule

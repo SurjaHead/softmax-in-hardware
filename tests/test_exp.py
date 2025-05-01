@@ -22,14 +22,14 @@ async def test_exp(dut):
 
     # 3) Test vectors: q = round(x_real * 256)
     test_values = {
-         0.0:   0,     # q_in = round(0.0*256)
-        -0.65: -166,   # q_in = round(-0.65*256)
-         2.0:   512,   # q_in = round(2.0*256)
-        -5.0:  -1280    # q_in = round(-1.0*256)
+         0:   0,     # q_in = round(0.0*256)
+        -90: -166,   # q_in = round(-0.65*256)
+         -12:   512,   # q_in = round(2.0*256)
+        -8:  -1280    # q_in = round(-1.0*256)
     }
 
     for x_real, q_val in test_values.items():
-        dut.q.value = q_val
+        dut.q.value = x_real
         await RisingEdge(dut.clk)           # let output update
 
         # Compute expected Q8.8 result

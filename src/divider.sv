@@ -30,8 +30,8 @@ module divider #(
   logic signed [DW:0] sub_result;        
   
   // sequential block: update state and registers on each clock
-  always_ff @(posedge clk or negedge rst) begin
-    if (!rst) begin
+  always_ff @(posedge clk) begin
+    if (rst) begin
       state   <= IDLE;
       quo_reg <= 0;
       rem_reg <= 0;

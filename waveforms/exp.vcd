@@ -1,5 +1,5 @@
 $date
-	Mon Apr 21 20:22:54 2025
+	Mon Apr 28 12:46:05 2025
 $end
 $version
 	Icarus Verilog
@@ -10,41 +10,37 @@ $end
 $scope module exp $end
 $var wire 1 ! clk $end
 $var wire 32 " q [31:0] $end
-$var wire 32 # q_signed [31:0] $end
-$var wire 1 $ rst $end
-$var wire 32 % z_signed [31:0] $end
-$var wire 64 & t2 [63:0] $end
-$var wire 32 ' t [31:0] $end
-$var wire 32 ( q_out [31:0] $end
-$var wire 96 ) q_L [95:0] $end
-$var wire 32 * p [31:0] $end
-$var parameter 32 + A $end
-$var parameter 32 , B $end
-$var parameter 32 - C $end
-$var parameter 32 . DW $end
-$var parameter 32 / LN2 $end
-$var parameter 32 0 SCALE $end
+$var wire 1 # rst $end
+$var wire 32 $ z [31:0] $end
+$var wire 64 % t2 [63:0] $end
+$var wire 32 & t [31:0] $end
+$var wire 32 ' q_out [31:0] $end
+$var wire 96 ( q_L [95:0] $end
+$var wire 32 ) p [31:0] $end
+$var parameter 32 * A $end
+$var parameter 32 + B $end
+$var parameter 32 , C $end
+$var parameter 32 - DW $end
+$var parameter 32 . LN2 $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b100000000 0
-b10110001 /
-b100000 .
-b1011000 -
-b101011010 ,
-b1011100 +
+b10110001 .
+b100000 -
+b1011000 ,
+b101011010 +
+b1011100 *
 $end
 #0
 $dumpvars
-bx *
 bx )
 bx (
 bx '
 bx &
 bx %
-1$
-bz #
+bx $
+1#
 bz "
 1!
 $end
@@ -56,53 +52,47 @@ $end
 0!
 #20
 1!
-0$
+0#
 #25
 0!
 #30
+b100000000 '
 b100000000 (
-b100000000 )
-b11101001110100100 &
-b101011010 '
-b0 *
-b0 %
-b0 #
+b11101001110100100 %
+b101011010 &
+b0 )
+b0 $
 b0 "
 1!
 #35
 0!
 #40
-b10000101 (
-b10000101 )
-b111111010010000 &
 b10110100 '
-b11111111111111111111111101011010 *
-b11111111111111111111111101011010 #
-b11111111111111111111111101011010 "
+b10110100 (
+b10000000000000000 %
+b100000000 &
+b11111111111111111111111110100110 )
+b11111111111111111111111110100110 "
 1!
 #45
 0!
 #50
-b11011110000 (
-b110111100 )
-b10 %
-b111110000001000000 &
-b111111000 '
-b10011110 *
-b1000000000 #
-b1000000000 "
+b11110100 '
+b11110100 (
+b11011001111000100 %
+b101001110 &
+b11111111111111111111111111110100 )
+b11111111111111111111111111110100 "
 1!
 #55
 0!
 #60
-b1 (
-b11011010 )
-b11111111111111111111111111111001 %
-b10110101101100001 &
-b100110001 '
-b11111111111111111111111111010111 *
-b11111111111111111111101100000000 #
-b11111111111111111111101100000000 "
+b11111000 '
+b11111000 (
+b11011111001000100 %
+b101010010 &
+b11111111111111111111111111111000 )
+b11111111111111111111111111111000 "
 1!
 #65
 0!
