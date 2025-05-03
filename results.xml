@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1745441589" />
-    <testcase name="test_softmax" classname="tests.test_softmax" file="/Users/suryasure/projects/bert-inference/tests/test_softmax.py" lineno="6" time="0.0038149356842041016" sim_time_ns="1171.0" ratio_time="306951.43953502906" />
+    <property name="random_seed" value="1746133223" />
+    <testcase name="test_softmax" classname="tests.test_softmax" file="/Users/suryasure/projects/bert-inference/tests/test_softmax.py" lineno="5" time="0.01495981216430664" sim_time_ns="5360.001" ratio_time="358293.335580021" />
   </testsuite>
 </testsuites>
