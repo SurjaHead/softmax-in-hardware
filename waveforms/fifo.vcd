@@ -1,5 +1,5 @@
 $date
-	Sun Apr 27 21:05:10 2025
+	Tue May 20 22:33:52 2025
 $end
 $version
 	Icarus Verilog
@@ -16,25 +16,27 @@ $var wire 1 % wr_en $end
 $var wire 1 & full $end
 $var wire 1 ' empty $end
 $var parameter 32 ( DW $end
-$var parameter 32 ) N $end
-$var reg 3 * counter [2:0] $end
-$var reg 32 + data_out [31:0] $end
-$var reg 2 , read_ptr [1:0] $end
-$var reg 2 - write_ptr [1:0] $end
+$var parameter 16 ) INIT_VALUE $end
+$var parameter 32 * N $end
+$var reg 6 + counter [5:0] $end
+$var reg 32 , data_out [31:0] $end
+$var reg 5 - read_ptr [4:0] $end
+$var reg 5 . write_ptr [4:0] $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b100 )
+b100000 *
+b101 )
 b100000 (
 $end
 #0
 $dumpvars
+b0 .
 b0 -
-b0 ,
-bx +
-b0 *
-1'
+bx ,
+b1 +
+0'
 0&
 0%
 1$
@@ -50,97 +52,100 @@ $end
 #15
 0!
 #20
-0'
-b1 *
+1'
+b0 +
 b1 -
+b101 ,
 1!
-b1010 "
-1%
+1#
 #25
 0!
 #30
-b10 *
-b10 -
+0'
+b1 +
+b1 .
 1!
-b10100 "
+b1010 "
+1%
+0#
 #35
 0!
 #40
-b11 *
-b11 -
+b10 +
+b10 .
 1!
-b11110 "
+b10100 "
 #45
 0!
 #50
-1&
-b100 *
-b0 -
+b11 +
+b11 .
 1!
-b101000 "
+b11110 "
 #55
 0!
 #60
+b100 +
+b100 .
 1!
-0%
+b101000 "
 #65
 0!
 #70
-0&
-b11 *
-b1 ,
-b1010 +
 1!
-1#
+0%
 #75
 0!
 #80
-b10 *
-b10 ,
-b10100 +
+b11 +
+b10 -
+b10100 ,
 1!
+1#
 #85
 0!
 #90
-b1 *
-b11 ,
-b11110 +
+b10 +
+b11 -
+b11110 ,
 1!
 #95
 0!
 #100
-1'
-b0 *
-b0 ,
-b101000 +
+b1 +
+b100 -
+b101000 ,
 1!
 #105
 0!
 #110
-0'
-b1 *
-b1 -
+1'
+b0 +
+b101 -
+bx ,
 1!
-b110010 "
-1%
 #115
 0!
 #120
-b1 ,
-b110010 +
-b10 -
+0'
+b1 +
+b101 .
 1!
-b111100 "
+b110010 "
+1%
 #125
 0!
 #130
+b110 -
+b110 .
 1!
-0#
-0%
+b111100 "
 #135
 0!
 #140
 1!
+0#
+0%
 #145
 0!
 #150
@@ -159,4 +164,8 @@ b111100 "
 1!
 #185
 0!
-#191
+#190
+1!
+#195
+0!
+#201

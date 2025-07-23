@@ -129,6 +129,7 @@ module max #(
     .DW(DW),
     .N(N)
   ) fifo_inst (
+    
     .clk(clk),
     .rst(rst),  // Fixed to active-low reset
     .write_en(din_valid),

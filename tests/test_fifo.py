@@ -20,6 +20,10 @@ async def test_fifo(dut):
     await Timer (10, units="ns")
     dut.rst.value = 0
     await Timer (10, units="ns")
+
+    dut.rd_en.value = 1
+    await Timer (10, units="ns")
+    dut.rd_en.value = 0
     
     # Write 4 values to the FIFO
     dut.wr_en.value = 1

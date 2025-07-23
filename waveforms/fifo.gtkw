@@ -1,0 +1,32 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Wed May 21 01:52:45 2025
+[*]
+[dumpfile] "/Users/suryasure/projects/bert-inference/waveforms/fifo.vcd"
+[dumpfile_mtime] "Wed May 21 01:52:30 2025"
+[dumpfile_size] 1185
+[savefile] "/Users/suryasure/projects/bert-inference/waveforms/fifo.gtkw"
+[timestart] 0
+[size] 1336 600
+[pos] -1 -1
+*-5.292181 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[sst_width] 255
+[signals_width] 144
+[sst_expanded] 1
+[sst_vpaned_height] 159
+@420
+fifo.N
+@421
+fifo.clk
+fifo.counter[5:0]
+fifo.data_in[31:0]
+fifo.data_out[31:0]
+fifo.empty
+fifo.full
+fifo.rd_en
+fifo.read_ptr[4:0]
+fifo.rst
+fifo.wr_en
+fifo.write_ptr[4:0]
+[pattern_trace] 1
+[pattern_trace] 0
